@@ -5,12 +5,12 @@ namespace Domain.UseCases;
 
 public interface IRepository<T> where T : class
 {
-    IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null,
+    Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
         bool disableTracking = true);
     T GetById(object id);
-    T GetByIdAsync(Expression<Func<T, bool>> filter = null,
+    Task<T> GetByIdAsync(Expression<Func<T, bool>> filter = null,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
         bool disableTracking = true);
