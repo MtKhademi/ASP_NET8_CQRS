@@ -1,4 +1,6 @@
+using Domain.UseCases;
 using Infrastraucture.Data;
+using Infrastraucture.Implementations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,8 @@ builder.Services.AddDbContext<VotingContext>(
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
     });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
