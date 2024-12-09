@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Vote
+public class VoteGroup
 {
     public int VoteId { get; set; }
     public string UserId { get; set; }

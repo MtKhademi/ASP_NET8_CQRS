@@ -11,13 +11,13 @@ public class VotingContext : IdentityDbContext<ApplicationUser>
     }
 
     public DbSet<VoteGroup> VoteGroups { get; set; }
-    public DbSet<Vote> Votes { get; set; }
+    public DbSet<VoteGroup> Votes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<Vote>()
+        builder.Entity<VoteGroup>()
             .HasOne(v => v.VouteGroup)
             .WithMany(g => g.Votes)
             .HasForeignKey(v => v.GroupId);
