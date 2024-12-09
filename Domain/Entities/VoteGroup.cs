@@ -7,5 +7,5 @@ public class VoteGroup
     public string GroupDescription { get; set; }
     public string Symbol { get; set; }
     public int VotesCount { get; set; }
-    public ICollection<Vote> VoteRepository { get; set; }
+    public ICollection<Vote> Votes { get; set; }
 }

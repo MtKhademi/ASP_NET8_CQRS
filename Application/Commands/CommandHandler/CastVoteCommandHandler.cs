@@ -21,24 +21,29 @@ internal class CastVoteCommandHandler : IRequestHandler<CastVoteCommand, bool>
         {
             return false;
         }
-        var vote = voteGroup.VoteRepository.FirstOrDefault(v => v.UserId == request.UserId);
-        if (vote != null)
-        {
-            return false;
-        }
+
         var user = _unitOfWork.UserRepository.GetById(request.UserId);
-        if (user == null)
+        if (user == null || !(user.IsAuthorized ?? false))
         {
             return false;
         }
 
-        voteGroup.VoteRepository.Add(new Vote
+        var existingVote = (await _unitOfWork.VoteRepository.GetAllAsync(
+            v => v.UserId == request.UserId && v.GroupId == request.GroupId)).FirstOrDefault();
+
+        await _unitOfWork.VoteRepository.AddAsync(new Vote
         {
             UserId = request.UserId,
             GroupId = request.GroupId,
             VoteDate = DateTime.Now
         });
-        var result = await _unitOfWork.CompleteAsync();
-        return result > 0;
+
+        if (voteGroup != null)
+        {
+            voteGroup.VotesCount++;
+            var result = await _unitOfWork.CompleteAsync();
+            return result > 0;
+        }
+        return false;
     }
 }

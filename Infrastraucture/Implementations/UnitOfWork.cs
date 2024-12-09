@@ -11,13 +11,13 @@ public class UnitOfWork : IUnitOfWork
     {
         _context = context;
         UserRepository = new UserRepository(_context);
-        Votes = new VoteRepository(_context);
+        VoteRepository = new VoteRepository(_context);
         VoteGroupRepository = new VoteGroupRepository(_context);
     }
 
     public IUserRepository UserRepository { get; private set; }
 
-    public IVoteRepository Votes { get; private set; }
+    public IVoteRepository VoteRepository { get; private set; }
 
     public IVoteGroupRepository VoteGroupRepository { get; private set; }
 
