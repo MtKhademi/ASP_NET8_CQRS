@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Application.Commands.CommandHandler;
 
-internal class LogoutCommandHandler : IRequestHandler<LogoutCommand, bool>
+internal class LogoutCommandHandler : IRequestHandler<LogoutUserCommand, bool>
 {
     private readonly SignInManager<ApplicationUser> _singInManager;
 
@@ -14,7 +14,7 @@ internal class LogoutCommandHandler : IRequestHandler<LogoutCommand, bool>
         _singInManager = singInManager;
     }
 
-    public async Task<bool> Handle(LogoutCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(LogoutUserCommand request, CancellationToken cancellationToken)
     {
         await _singInManager.SignOutAsync();
         return true; 
