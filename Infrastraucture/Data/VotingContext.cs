@@ -19,7 +19,7 @@ public class VotingContext : IdentityDbContext<ApplicationUser>
 
         builder.Entity<Vote>()
             .HasOne(v => v.VouteGroup)
-            .WithMany(g => g.Votes)
+            .WithMany(g => g.VoteRepository)
             .HasForeignKey(v => v.GroupId);
     }
 }

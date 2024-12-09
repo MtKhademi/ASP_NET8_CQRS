@@ -15,7 +15,7 @@ internal class UpdateVoteGroupCommandHandler : IRequestHandler<UpdateVoteGroupCo
 
     public async Task<bool> Handle(UpdateVoteGroupCommand request, CancellationToken cancellationToken)
     {
-        var group = _unitOfWork.VoteGroupsRepository.GetById(request.GroupId);
+        var group = _unitOfWork.VoteGroupRepository.GetById(request.GroupId);
         if (group == null)
         {
             return false;
@@ -24,7 +24,7 @@ internal class UpdateVoteGroupCommandHandler : IRequestHandler<UpdateVoteGroupCo
         group.GroupName = request.GroupName;
         group.GroupDescription = request.GroupDescription;
 
-        _unitOfWork.VoteGroupsRepository.Update(group);
+        _unitOfWork.VoteGroupRepository.Update(group);
         var result = await _unitOfWork.CompleteAsync();
         return result > 0;
     }

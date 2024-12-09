@@ -2,9 +2,9 @@
 
 public interface IUnitOfWork : IDisposable
 {
-    IUserRepository Users { get; }
+    IUserRepository UserRepository { get; }
     IVoteRepository Votes { get; }
-    IVoteGroupRepository VoteGroupsRepository { get; }
+    IVoteGroupRepository VoteGroupRepository { get; }
 
     Task<int> CompleteAsync();
 }

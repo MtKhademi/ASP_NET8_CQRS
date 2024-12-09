@@ -24,7 +24,7 @@ internal class CreateVoterGroupCommandHandler : IRequestHandler<CreateVoterGroup
             VotesCount = 0
         };
 
-        await _unitOfWork.VoteGroupsRepository.AddAsync(voterGroup);
+        await _unitOfWork.VoteGroupRepository.AddAsync(voterGroup);
         var result = await _unitOfWork.CompleteAsync();
         return result > 0;
     }

@@ -10,16 +10,16 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(VotingContext context)
     {
         _context = context;
-        Users = new UserRepository(_context);
+        UserRepository = new UserRepository(_context);
         Votes = new VoteRepository(_context);
-        VoteGroupsRepository = new VoteGroupRepository(_context);
+        VoteGroupRepository = new VoteGroupRepository(_context);
     }
 
-    public IUserRepository Users { get; private set; }
+    public IUserRepository UserRepository { get; private set; }
 
     public IVoteRepository Votes { get; private set; }
 
-    public IVoteGroupRepository VoteGroupsRepository { get; private set; }
+    public IVoteGroupRepository VoteGroupRepository { get; private set; }
 
     public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
 

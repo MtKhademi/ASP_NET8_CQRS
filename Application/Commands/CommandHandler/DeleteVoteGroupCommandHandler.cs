@@ -15,12 +15,12 @@ internal class DeleteVoteGroupCommandHandler : IRequestHandler<DeleteVoteGroupCo
 
     public async Task<bool> Handle(DeleteVoteGroupCommand request, CancellationToken cancellationToken)
     {
-        var voteGroup = _unitOfWork.VoteGroupsRepository.GetById(request.GroupId);
+        var voteGroup = _unitOfWork.VoteGroupRepository.GetById(request.GroupId);
         if (voteGroup == null)
         {
             return false;
         }
-        _unitOfWork.VoteGroupsRepository.Delete(voteGroup);
+        _unitOfWork.VoteGroupRepository.Delete(voteGroup);
         var result = await _unitOfWork.CompleteAsync();
         return result > 0;
     }
