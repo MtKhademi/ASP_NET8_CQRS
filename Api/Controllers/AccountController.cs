@@ -16,7 +16,7 @@ public class AccountController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto registerDto)
     {
         var command = new RegisterUserCommand
@@ -35,7 +35,7 @@ public class AccountController : ControllerBase
         return BadRequest();
     }
 
-    [HttpPost]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(RegisterDto registerDto)
     {
         var command = new LoginUserCommand
@@ -49,7 +49,7 @@ public class AccountController : ControllerBase
         return BadRequest();
     }
 
-    [HttpPost]
+    [HttpPost("logout")]
     public async Task<IActionResult> Logout(RegisterDto registerDto)
     {
         var result = await _mediator.Send(new LogoutUserCommand());

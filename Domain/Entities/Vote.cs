@@ -1,8 +1,6 @@
-﻿using System.Security.Principal;
+﻿namespace Domain.Entities;
 
-namespace Domain.Entities;
-
-public class VoteGroup
+public class Vote
 {
     public int VoteId { get; set; }
     public string UserId { get; set; }

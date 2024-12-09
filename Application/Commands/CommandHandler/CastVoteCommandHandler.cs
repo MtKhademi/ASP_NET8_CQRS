@@ -31,7 +31,7 @@ internal class CastVoteCommandHandler : IRequestHandler<CastVoteCommand, bool>
         var existingVote = (await _unitOfWork.VoteRepository.GetAllAsync(
             v => v.UserId == request.UserId && v.GroupId == request.GroupId)).FirstOrDefault();
 
-        await _unitOfWork.VoteRepository.AddAsync(new VoteGroup
+        await _unitOfWork.VoteRepository.AddAsync(new Vote
         {
             UserId = request.UserId,
             GroupId = request.GroupId,

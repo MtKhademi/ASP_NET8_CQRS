@@ -2,6 +2,6 @@
 
 namespace Domain.UseCases;
 
-public interface IVoteRepository : IRepository<VoteGroup>
+public interface IVoteRepository : IRepository<Vote>
 {
 }

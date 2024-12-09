@@ -17,7 +17,7 @@ public class VotingContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<VoteGroup>()
+        builder.Entity<Vote>()
             .HasOne(v => v.VouteGroup)
             .WithMany(g => g.Votes)
             .HasForeignKey(v => v.GroupId);
